@@ -60,6 +60,7 @@ img {
 
 .flex-container {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 10px 22px;
 }
@@ -77,4 +78,22 @@ img {
 .flex .fa {
   font-size: 30px;
   color: #2f5876;
+}
+
+.footer-credit {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  padding: 5px 10px;
+  color: #444444;
+}
+
+.footer-credit .developer {
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.footer-credit .version {
+  font-size: 1em;
+  color: #444;
 }

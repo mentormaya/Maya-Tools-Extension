@@ -9,16 +9,26 @@ chrome.storage.sync.get("color", ({ color }) => {
 changeColor.addEventListener("click", async () => {
   let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  chrome.scripting.executeScript({
-    target: { tabId: tab.id },
-    function: setPageBackgroundColor,
-  });
+  if (tab.url && tab.url.includes('chrome://')){
+    console.log('Chrome Page Showing! Error will trigger')
+    return
+  }
+
+  if (tab.url && tab.url.includes('youtube.com/watch')){
+    console.log('YouTube Video Link Found!');
+    downloadYouTubeVideo(tab.url);
+  }
+
+  if (tab.url && tab.url.includes('youtube.com/playlist')){
+    console.log('YouTube Playlist Link Found!');
+    downloadYouTubePlaylist(tab.url);
+  }
 });
 
-// The body of this function will be execuetd as a content script inside the
-// current page
-function setPageBackgroundColor() {
-  chrome.storage.sync.get("color", ({ color }) => {
-    document.body.style.backgroundColor = color;
-  });
+function downloadYouTubeVideo(watch_url){
+  console.log(watch_url.split('?'))
+}
+
+function downloadYouTubePlaylist(watch_url){
+  console.log(watch_url.split('?'))
 }
