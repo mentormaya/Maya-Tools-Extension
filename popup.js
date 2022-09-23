@@ -1,10 +1,13 @@
+import { downloadYouTubeVideo, downloadYouTubePlaylist } from './assets/js/YouTube.js'
+
+let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
 // Initialize butotn with users's prefered color
 let downloadBtn = document.getElementById("download");
 
 // When the button is clicked, inject setPageBackgroundColor into current page
 downloadBtn.addEventListener("click", async () => {
-  let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
-
+  console.log('Downloading... ' + tab.url)  
   if (tab.url && tab.url.includes('chrome://')){
     console.log('Chrome Page Showing! Error will trigger')
     return
@@ -20,11 +23,3 @@ downloadBtn.addEventListener("click", async () => {
     downloadYouTubePlaylist(tab.url);
   }
 });
-
-function downloadYouTubeVideo(watch_url){
-  console.log(watch_url.split('?'))
-}
-
-function downloadYouTubePlaylist(watch_url){
-  console.log(watch_url.split('?'))
-}

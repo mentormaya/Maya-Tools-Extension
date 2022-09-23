@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "manifest_version": 3,
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "permissions": ["storage", "activeTab", "scripting"],
   "action": {
@@ -14,7 +15,8 @@
       "32": "/assets/images/icon32.png",
       "48": "/assets/images/icon64.png",
       "128": "/assets/images/icon128.png"
-    }
+    },
+    "title": "Video Downloader"
   },
   "icons": {
     "16": "/assets/images/icon16.png",
