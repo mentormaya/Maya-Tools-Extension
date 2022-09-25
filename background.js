@@ -1,14 +1,15 @@
-import { findLinks } from './assets/js/main.js'
-
 // chrome.tabs.onActivated.addListener(async ({tabID, windowID}) => {
 //   console.log(tabID, ' Tab Activated')
 // });
 
-chrome.tabs.onUpdated.addListener(async (tabID, changeInFo, tab) => {
+chrome.tabs.onUpdated.addListener(async (tabId, changeInFo, tab) => {
   // console.log(tabID, ' Tab Updated as ', changeInFo)
   if (changeInFo.status === 'complete'){
     console.log('Page Reloaded!')
-    findLinks(tabID);
+    chrome.scripting.executeScript({
+      target: {tabId: tabId},
+      files: ['./assets/js/main.js'],
+    });
   }
 });
 
