@@ -7,6 +7,7 @@ function getYoutubeLinks(html = null){
     console.log('Extracting Links from Youtube...')
     let initialResponse;
     let getInitialResponse = setInterval(()=> {
+        console.log('...')
         html =  document.body.innerHTML
         if (html){
             initialContent = initial_response_regex.exec(html)
@@ -15,7 +16,7 @@ function getYoutubeLinks(html = null){
                 if (initialResponse){
                     clearInterval(getInitialResponse)
                     chrome.runtime.sendMessage({
-                        status: 'Links found!',
+                        badge: `${initialResponse.streamingData.adaptiveFormats.length}+${initialResponse.streamingData.formats.length}`,
                         details: initialResponse.streamingData
                     })
                 }
@@ -35,8 +36,7 @@ function extractLinks(host){
 }
 
 function findLinks(){
-    chrome.runtime.sendMessage({status: "..."});
-    console.log('finding links...')
+    chrome.runtime.sendMessage({finding: "..."});
     extractLinks(window.location.host)
 }
 

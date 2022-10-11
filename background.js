@@ -6,7 +6,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInFo, tab) => {
   )
     return undefined;
   if (changeInFo.status === "complete") {
-    console.log("Page Reloaded!\nLoading main.js");
+    console.log("Page Reloaded!\n\nLoading main.js");
     chrome.scripting.executeScript({
       target: { tabId: tabId },
       files: ["assets/js/main.js"],
@@ -25,19 +25,22 @@ chrome.runtime.onInstalled.addListener((reason) => {
 
 chrome.runtime.onMessage.addListener(function (req, sender, sendResponse) {
   let is_chrome_page = (sender.origin.includes('chrome://') || sender.origin.includes('chrome-extension://'))
-  if (req.status && req.status == "..." && !is_chrome_page) {
+  if (req.finding && !is_chrome_page) {
     console.log(`finding links in the content...`)
     chrome.action.setBadgeText({
       tabId: sender.tab.id,
-      text: "...",
+      text: req.finding,
     });
   }
 
-  if (req.total_video && !is_chrome_page){
-    console.log(`setting badge to '${req.total_video}'`)
+  if (req.badge){
+    console.log(`setting badge of tab(${sender.tab.id}) to '${req.badge}'`)
     chrome.action.setBadgeText({
       tabId: sender.tab.id,
-      text: `${req.total_video}`
+      text: `${req.badge}`
     });
+
+    //store the details in to local storage
+    
   }
 });
