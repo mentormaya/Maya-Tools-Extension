@@ -8,7 +8,7 @@ let downloadBtn = document.getElementById("download");
 // When the button is clicked, inject setPageBackgroundColor into current page
 downloadBtn.addEventListener("click", async () => {
   console.log('Downloading... ' + tab.url)  
-  if (tab.url && tab.url.includes('chrome://')){
+  if (tab.url && (tab.url.includes('chrome://') || tab.url.includes('chrome-extension://'))){
     console.log('Chrome Page Showing! Error will trigger')
     return
   }
