@@ -17,7 +17,8 @@ function getYoutubeLinks(html = null){
                     clearInterval(getInitialResponse)
                     chrome.runtime.sendMessage({
                         badge: `${initialResponse.streamingData.adaptiveFormats.length}+${initialResponse.streamingData.formats.length}`,
-                        details: initialResponse.streamingData
+                        details: initialResponse.videoDetails,
+                        streams: initialResponse.streamingData
                     })
                 }
             }
