@@ -38,9 +38,6 @@ chrome.runtime.onMessage.addListener(function (req, sender, sendResponse) {
     chrome.action.setBadgeText({
       tabId: sender.tab.id,
       text: `${req.badge}`
-    });
-
-    //store the details in to local storage
-    
+    });    
   }
 });

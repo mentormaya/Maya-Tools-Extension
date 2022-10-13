@@ -47,6 +47,11 @@ img {
   color: #ffffff;
 }
 
+button.download{
+  padding: 0px;
+  height: auto;
+}
+
 .modal-header {
   align-items: center;
   border-bottom: 0.5px solid #dadada;
@@ -78,9 +83,10 @@ img {
   display: flex;
 }
 
-/* #expire-in{
+
+#expire-in{
   display: none;
-} */
+}
 
 .modal-content .links{
   /* display: none; */
