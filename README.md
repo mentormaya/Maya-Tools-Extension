@@ -1,1 +1,1 @@
-# Video-Downloader-Extension
+# Maya Tools Chrome Extension
