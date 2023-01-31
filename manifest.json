@@ -1,6 +1,6 @@
 {
-  "name": "Video Downloader",
-  "description": "Download the Video From any site!",
+  "name": "Maya Tools",
+  "description": "Easing your daily needs!",
   "version": "1.0.0",
   "manifest_version": 3,
   "background": {
@@ -19,7 +19,7 @@
       "48": "/assets/images/icon64.png",
       "128": "/assets/images/icon128.png"
     },
-    "title": "Video Downloader"
+    "title": "Maya Tools"
   },
   "icons": {
     "16": "/assets/images/icon16.png",
