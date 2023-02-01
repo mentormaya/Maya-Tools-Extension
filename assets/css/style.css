@@ -8,6 +8,8 @@ body {
   min-height: 180px;
   padding: 0;
   width: 384px;
+  box-sizing: border-box;
+  /* background-color: rgba(112, 111, 111); */
 }
 
 h1 {
@@ -56,15 +58,23 @@ button.download{
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-bottom: 0.5px solid #dadada;
+  /* border-bottom: 0.5px solid #dadada; */
 }
 
+hr {
+  width: 95%;
+  height: 1px;
+  border: none;
+  outline: none;
+  margin: 0.2em;
+  background-color: #dadada;
+}
 
-
-.modal-icons {
-  border-top: 0.5px solid #dadada;
-  height: 15px;
+.modal-footer {
+  /* border-top: 0.5px solid #dadada; */
   width: 100%;
+  display: flex;
+  flex-direction: column-reverse;
 }
 .modal-content {
   padding: 0 10px;
@@ -111,14 +121,29 @@ button.download{
 }
 
 .logo {
+  width: 80%;
   padding: 16px;
   padding-bottom: 5px;
   font-weight: 700;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .logo-icon {
+  width: 15%;
   vertical-align: text-bottom;
   margin-right: 12px;
+}
+
+.brand{
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name{
+  padding-left: 0.25em;
 }
 
 .version {
@@ -128,40 +153,52 @@ button.download{
 }
 
 .subtitle{
+  display: flex;
+  flex-direction: row;
   text-align: center;
   margin: 0.25em;
-  margin-top: -0.75em;
+  color: #444;
+  margin-top: -0.25em;
   /* margin-left: 2em; */
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
 }
 
-.flex-container {
+.subtitle span{
+  color: #444;
+  font-size: 15px;
+  font-weight: 400;
+  margin-left: 1em;
+}
+
+.icons-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 22px;
 }
 
-.flex {
+.icon {
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
-  width: 120px;
+  display: flex;
+  align-items: center;
 }
 
-.flex:hover {
+.icon:hover {
   opacity: 0.4;
 }
 
-.flex .fa {
+.icon .fa {
   font-size: 30px;
   color: #2f5876;
 }
 
 .footer-credit {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-around;
   padding: 5px 10px;
   color: #444444;
 }
@@ -174,4 +211,23 @@ button.download{
 .footer-credit .version {
   font-size: 1em;
   color: #444;
+}
+
+.tabs{
+  width: 98%;
+}
+
+.tabs ul{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+	background: #fbfbfb;
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	margin-bottom: 25px;
+}
+
+.tabs li{
+  
 }
