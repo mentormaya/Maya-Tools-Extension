@@ -16,7 +16,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, changeInFo, tab) => {
 
 chrome.runtime.onInstalled.addListener((reason) => {
   if (reason === chrome.runtime.OnInstalledReason.INSTALL) {
-    console.log("Video Downloader Installed Successfully!");
+    console.log("Maya Tools Installed Successfully!");
     chrome.tabs.create({
       url: "welcome.html",
     });
