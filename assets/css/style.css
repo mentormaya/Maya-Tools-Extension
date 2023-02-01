@@ -53,9 +53,13 @@ button.download{
 }
 
 .modal-header {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   border-bottom: 0.5px solid #dadada;
 }
+
+
 
 .modal-icons {
   border-top: 0.5px solid #dadada;
@@ -109,6 +113,7 @@ button.download{
 .logo {
   padding: 16px;
   padding-bottom: 5px;
+  font-weight: 700;
 }
 
 .logo-icon {
@@ -119,11 +124,16 @@ button.download{
 .version {
   color: #444;
   font-size: 18px;
+  font-weight: 400;
 }
 
 .subtitle{
   text-align: center;
   margin: 0.25em;
+  margin-top: -0.75em;
+  /* margin-left: 2em; */
+  font-style: italic;
+  font-weight: 400;
 }
 
 .flex-container {
