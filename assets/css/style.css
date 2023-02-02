@@ -1,3 +1,6 @@
+/* Google Fonts import */
+@import url('https://fonts.googleapis.com/css2?family=Qwigley&family=Yatra+One&display=swap');
+
 /* Modal Structure */
 
 html,
@@ -102,13 +105,17 @@ hr {
   display: block;
   align-self: start;
   text-align: start;
-  font-size: 0.9em;
+  font-size: 1.3em;
   font-weight: 600;
+  font-family: 'Qwigley';
+  padding: 0;
 }
 
 #quote{
-  font-size: 0.7em;
+  font-size: 1.2em;
   text-align: justify;
+  font-family: 'Qwigley';
+  padding: 0;
 }
 
 
@@ -158,6 +165,10 @@ hr {
 
 .brand-name{
   padding-left: 0.25em;
+  font-family: 'Yatra One';
+  font-size: 1.5em;
+  font-weight: 800;
+  letter-spacing: 0.3rem;
 }
 
 .version {
