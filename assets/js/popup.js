@@ -13,8 +13,10 @@ async function getCurrentTab() {
 }
 
 function clearLinks(){
-  list.innerHTML = "";
-  expiring.style.display = "none";
+  if(list != null){
+    list.innerHTML = "";
+    expiring.style.display = "none";
+  }
 }
 
 function showList(){

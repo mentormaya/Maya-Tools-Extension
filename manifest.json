@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "manifest_version": 3,
   "background": {
-    "service_worker": "background.js",
+    "service_worker": "/assets/js/background.js",
     "type": "module"
   },
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
@@ -12,7 +12,7 @@
     "<all_urls>"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "/pages/popup.html",
     "default_icon": {
       "16": "/assets/icons/maya_tools/icon16.png",
       "32": "/assets/icons/maya_tools/icon32.png",
@@ -27,5 +27,5 @@
     "48": "/assets/icons/maya_tools/icon64.png",
     "128": "/assets/icons/maya_tools/icon128.png"
   },
-  "options_page": "options.html"
+  "options_page": "/pages/options.html"
 }
