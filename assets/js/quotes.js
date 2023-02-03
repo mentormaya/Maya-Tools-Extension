@@ -6,7 +6,9 @@ const NEP_QUOTE_API = '';
 
 const HINDI_QUOTE_API = '';
 
-const quote = document.querySelector('#quote');
+const content_header = document.querySelector('.content-header');
+const quotes = document.querySelector('#quote_content');
+const author = document.querySelector('#quote_author');
 
 
 function fetchQuote(lang = 'en'){
@@ -20,10 +22,10 @@ function fetchQuote(lang = 'en'){
             'Accept': 'application/json'
         }})
     .then(response => response.json())
-    .then(quote => {
-        let formatted_quote = quote.content + " - " + quote.author;
-        
-        // quote.innerHTML = formatted_quote;
+    .then(quote => {        
+        quotes.innerHTML = quote.content;
+        author.innerHTML = quote.author;
+        content_header.style.display = 'flex';
     })
 }
 
