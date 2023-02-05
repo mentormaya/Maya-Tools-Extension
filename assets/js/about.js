@@ -1,1 +1,1 @@
-alert('Hello from About.js');
+// alert('Hello from About.js');
