@@ -1,7 +1,8 @@
-// const container = document.querySelector('.modal-content')
+const container = document.querySelector('.modal-content')
 const content_title = document.querySelector('.content-title')
 const expiring = document.querySelector('#expire-in')
 const expire_time = document.querySelector('.expire-time')
+const video_list = document.querySelector('.v-links')
 const list = document.querySelector('.links')
 
 let currentVideoData;
@@ -13,25 +14,26 @@ async function getCurrentTab() {
 }
 
 function clearLinks(){
-  if(list != null){
-    list.innerHTML = "";
+  // console.log(video_list)
+  if(video_list != null){
+    video_list.innerHTML = "";
     expiring.style.display = "none";
   }
 }
 
 function showList(){
-  list.style.display = 'flex';
-  list.style = 'flex-direction: column;';
+  video_list.style.display = 'flex';
+  video_list.style = 'flex-direction: column;';
   expiring.style.display = 'block';
 }
 
 function hideList(){
-  list.style.display = 'none';
+  video_list.style.display = 'none';
   expiring.style.display = 'none';
 }
 
 function toggleList(){
-  if (list.style.display == 'none'){
+  if (video_list.style.display == 'none'){
     showList()
   }else {
     hideList()
@@ -73,7 +75,7 @@ function populateLinks(details, streams){
   // </li>`;
   // });
 
-  list.innerHTML = list_html;
+  video_list.innerHTML = list_html;
 }
 
 function showLinks(details, streams){

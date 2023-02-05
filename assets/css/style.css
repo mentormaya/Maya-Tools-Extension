@@ -151,22 +151,59 @@ hr {
   display: none;
 }
 
-.modal-content .links{
-  /* display: none; */
-  margin: 0.3em 0px;
-  padding-inline-start: 1.2em;
+.content-body{
+  display: flex;
+  flex-direction: column;
+  width: 98%;
 }
 
-.link-items{
+.content-body .links{
+  margin: 0.3em 0px;
+  padding: 0.1em;
+  /* border: 1px solid #dddddd; */
+}
+
+.content-body .links ul{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style-type: none;
+  margin-block-start: 0;
+  margin-block-end: 0;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0;
+}
+
+.content-body .links ul .link{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.05em 1.6em;
+  background: #fbfbfb;
+  border: 1px solid #dddddd;
+  border-radius: 0.5em;
+}
+
+.content-body .links ul .link a{
+  display: flex;
+  flex-direction: column;
   padding: 0.2em;
   margin: 1em 0.05em;
   line-height: 1.1;
   font-size: 1.2rem;
 }
 
-.link-items i{
-  font-size: 5rem;
+.content-body .links ul .link a .icon{
+  font-size: 3rem;
   color: #2f5876;
+  align-self: center;
+  margin: 0.1em;
+}
+
+.content-body .links ul .link a .text{
+  text-align: center;
+  font-weight: 900;
 }
 
 .logo {
