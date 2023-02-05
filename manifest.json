@@ -1,8 +1,12 @@
 {
-  "name": "Maya Tools",
-  "description": "Easing your daily needs!",
-  "version": "1.0.0",
   "manifest_version": 3,
+  "name": "Maya Tools - Easing your daily needs!",
+  "short_name": "Maya Tools",
+  "version": "1.0.0",
+  "description": "Maya Tools is the collection of tools and techniques that we do need on our daily basis for the various works.",
+  "chrome_url_overrides": {
+    "newtab": "pages/new.html"
+  },
   "background": {
     "service_worker": "/assets/js/background.js",
     "type": "module"
