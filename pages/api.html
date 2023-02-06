@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/button.css">
   <link rel="stylesheet" href="../assets/css/toast.css">
@@ -72,8 +72,8 @@
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="utilitiesTools">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#utilities_api" aria-expanded="false"
-                aria-controls="utilities_api">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#utilities_api"
+                aria-expanded="false" aria-controls="utilities_api">
                 Utilities API
               </a>
             </h4>
@@ -93,11 +93,9 @@
               </a>
             </h4>
           </div>
-          <div id="passwordPinGenerator" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="passwordPinGeneratorContent">
+          <div id="passwordPinGenerator" class="panel-collapse collapse in" role="tabpanel"
+            aria-labelledby="passwordPinGeneratorContent">
             <div class="panel-body">
-              <div class="parameters">
-                Password or PIN?
-              </div>
               <div class="result-container">
                 <span id="result"></span>
                 <button class="btn" id="clipboard">
@@ -106,6 +104,34 @@
                 <button class="btn" id="generate">
                   <i class="fa-solid fa-arrows-rotate"></i>
                 </button>
+              </div>
+              <div class="parameters">
+                <div class="check-boxes">
+                  <label class="toggle">
+                    <span class="toggle-label">PIN</span>
+                    <input class="toggle-checkbox" type="checkbox" checked>
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-label">PASS</span>
+                  </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="upper" checked>
+                    <label class="form-check-label" for="upper">ABC</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="lower" checked>
+                    <label class="form-check-label" for="lower">abc</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="numbers" checked>
+                    <label class="form-check-label" for="numbers">123</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="symbols">
+                    <label class="form-check-label" for="symbols">@#$</label>
+                  </div>
+                </div>
+                <label for="length" class="form-label">Length: </label>
+                <input type="range" class="form-range" min="4" max="32" step="1" id="length" value=10>
               </div>
             </div>
           </div>
@@ -135,7 +161,8 @@
               </a>
             </h4>
           </div>
-          <div id="neaBillHelper" class="panel-collapse collapse" role="tabpanel" aria-labelledby="neaBillHelperSection">
+          <div id="neaBillHelper" class="panel-collapse collapse" role="tabpanel"
+            aria-labelledby="neaBillHelperSection">
             <div class="panel-body">
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
               moon officia aute, non cupidatat skateboard dolor brunch.

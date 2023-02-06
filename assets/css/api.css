@@ -1,5 +1,16 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 
+:root {
+  --primary-light: #8abdff;
+  --primary: #68b36e;
+  --primary-dark: #27a727;
+  --white: #ffffff;
+  --greyLight-1: #e4ebf5;
+  --greyLight-2: #c8d0e7;
+  --greyLight-3: #bec8e4;
+  --greyDark: #9baacf;
+}
+
 .modal-content {
   padding: 0.3em;
 }
@@ -39,6 +50,10 @@
   transform: rotate(180deg);
 }
 
+.panel-group{
+    margin-bottom: 0.1em;
+}
+
 .result-container {
   background: #fbfbfb;
   border: 1px solid #dddddd;
@@ -69,7 +84,7 @@
 }
 
 .result-container .btn:last-child {
-    right: 46px;
+  right: 46px;
 }
 
 .btn {
@@ -86,3 +101,68 @@
     font-size: 14px;
   }
 }
+
+.check-boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.check-boxes *{
+    cursor: pointer;
+}
+
+/* Toggle switch */
+
+.toggle {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .toggle-switch {
+    display: inline-block;
+    background: #ccc;
+    border-radius: 1.2em;
+    width: 32px;
+    height: 20px;
+    position: relative;
+    vertical-align: middle;
+    transition: background 0.25s;
+  }
+  .toggle-switch:before, .toggle-switch:after {
+    content: "";
+  }
+  .toggle-switch:before {
+    display: block;
+    background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 3.5px;
+    left: 3px;
+    transition: left 0.25s;
+  }
+  .toggle:hover .toggle-switch:before {
+    background: linear-gradient(to bottom, #fff 0%, #fff 100%);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+  }
+  .toggle-checkbox:checked + .toggle-switch {
+    background: #56c080;
+  }
+  .toggle-checkbox:checked + .toggle-switch:before {
+    left: 16px;
+  }
+  
+  .toggle-checkbox {
+    position: absolute;
+    visibility: hidden;
+  }
+  
+  .toggle-label {
+    margin: 5px;
+    position: relative;
+  }
