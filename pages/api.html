@@ -9,13 +9,15 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/button.css">
+  <link rel="stylesheet" href="../assets/css/toast.css">
   <link rel="stylesheet" href="../assets/css/api.css">
 </head>
 
 <body>
-  <div class="modal-header">
+  <div class="maya-header">
     <div class="logo">
       <img class="logo-icon" src="../assets/icons/maya_tools/icon128.png" alt="" />
       <div class="brand">
@@ -64,11 +66,87 @@
       </ul>
     </div>
   </div>
-  <div class="modal-content">
-    Hello API
+  <div class="maya-content">
+    <div class="wrapper center-block">
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="utilitiesTools">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#utilities_api" aria-expanded="false"
+                aria-controls="utilities_api">
+                Utilities API
+              </a>
+            </h4>
+          </div>
+          <div id="utilities_api" class="panel-collapse collapse" role="tabpanel" aria-labelledby="utilitiesTools">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading active" role="tab" id="passwordPinGeneratorContent">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#passwordPinGenerator"
+                aria-expanded="true" aria-controls="passwordPinGenerator">
+                Password and PIN Generator
+              </a>
+            </h4>
+          </div>
+          <div id="passwordPinGenerator" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="passwordPinGeneratorContent">
+            <div class="panel-body">
+              <div class="parameters">
+                Password or PIN?
+              </div>
+              <div class="result-container">
+                <span id="result"></span>
+                <button class="btn" id="clipboard">
+                  <i class="far fa-clipboard"></i>
+                </button>
+                <button class="btn" id="generate">
+                  <i class="fa-solid fa-arrows-rotate"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="dateHeplerSection">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#dateHepler"
+                aria-expanded="false" aria-controls="dateHepler">
+                Date Helper
+              </a>
+            </h4>
+          </div>
+          <div id="dateHepler" class="panel-collapse collapse" role="tabpanel" aria-labelledby="dateHeplerSection">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+              moon officia aute, non cupidatat skateboard dolor brunch.
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="neaBillHelperSection">
+            <h4 class="panel-title">
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#neaBillHelper"
+                aria-expanded="false" aria-controls="neaBillHelper">
+                NEA Bill Helper
+              </a>
+            </h4>
+          </div>
+          <div id="neaBillHelper" class="panel-collapse collapse" role="tabpanel" aria-labelledby="neaBillHelperSection">
+            <div class="panel-body">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+              moon officia aute, non cupidatat skateboard dolor brunch.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <hr>
-  <div class="modal-footer">
+  <div class="maya-footer">
     <div class="icons-container">
       <div class="icon">
         <a href="https://www.mentormaya.com" target="_blank">
@@ -106,6 +184,9 @@
       <span class="version">(v1.0.0)</span>
     </div>
   </div>
+  <script src="../assets/js/jquery-2.2.4.min.js"></script>
+  <script src="../assets/js/bootstrap.min.js"></script>
+  <script src="../assets/js/toast.js"></script>
   <script src="../assets/js/api.js" type="module"></script>
 </body>
 
