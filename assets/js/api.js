@@ -13,6 +13,18 @@ const clipboardBtn = document.getElementById("clipboard");
 const generateBtn = document.getElementById("generate");
 
 generateBtn.addEventListener("click", () => {
+  let pinPassword = $("#pinPassword").val();
+  let upper = $("#upper").val();
+  let lower = $("#lower").val();
+  let number = $("#numbers").val();
+  let symbols = $("#symbols").val();
+
+  console.log("pinPassword", pinPassword);
+  console.log("upper", upper);
+  console.log("lower", lower);
+  console.log("number", number);
+  console.log("symbols", symbols);
+
   resultEl.innerText = generatePassword(1, 1, 1, 1, 10);
   // toast("Password generated!");
 });
