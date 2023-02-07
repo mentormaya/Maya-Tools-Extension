@@ -1,7 +1,7 @@
 function toast(msg){
   
-    this.backgroundColor = 'rgba(32, 32, 32, 0.9)';
-    this.textColor = '#DDD';
+    this.backgroundColor = 'rgba(86, 180, 120, 0.9)';
+    this.textColor = '#003300';
     this.toastTime = 0;
   
     if(_("toast_div") && _("toast_div").style.display != "none"){
