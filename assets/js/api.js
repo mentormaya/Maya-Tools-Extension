@@ -1,3 +1,4 @@
+// Tabs Script
 $(".panel-collapse").on("show.bs.collapse", function () {
   $(this).siblings(".panel-heading").addClass("active");
 });
@@ -6,6 +7,10 @@ $(".panel-collapse").on("hide.bs.collapse", function () {
   $(this).siblings(".panel-heading").removeClass("active");
 });
 
+
+/*
+Password Generator Script starts from here
+*/
 $('#length').on("change mousemove", function() {
   $("#length_update").html($(this).val());
   if($("#pinPassword").is(":checked"))
@@ -172,4 +177,10 @@ const randomFunc = {
   number: getRandomNumber,
   symbol: getRandomSymbol,
 };
+
+// Password Generator Ends Here
+
+
+/* api works goes here */
+
 
