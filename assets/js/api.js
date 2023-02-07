@@ -14,6 +14,7 @@ const generateBtn = document.getElementById("generate");
 
 generateBtn.addEventListener("click", () => {
   resultEl.innerText = generatePassword(1, 1, 1, 1, 10);
+  // toast("Password generated!");
 });
 
 clipboard.addEventListener("click", () => {
