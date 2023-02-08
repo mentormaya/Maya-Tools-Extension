@@ -83,23 +83,36 @@
               <div class="api_cards">
                 <div class="card">
                   <div class="title">API Status <span class="api-status-mark" id="api_home"></span></div>
-                  <div class="api-status-text msgbox" id="api_home_ok">Okay</div>
                   <button class="btn btn-primary" type="button" id="get_home_btn">Referesh</button>
+                  <button type="button" class="btn btn-primary copy-result-btn">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </button>
+                  <pre class="code-block msgbox json" id="api_home_result">
+Click on Referesh to Get the data!
+                  </pre>
                 </div>
                 <div class="card">
-                  <div class="title">Numbers<span class="api-status-mark" id="api_numbers"></span></div>
-                  <input type="text" class="api_input" id="api_numbers" placeholder="Enter Your Number"/>
+                  <div class="title">Numbers<span class="api-status-mark" id="api_numbers_status"></span></div>
+                  <input type="text" class="api_input" id="api_numbers_input" placeholder="Enter Your Number"/>
                   <button class="btn btn-primary" type="button" id="get_numbers_btn">Get Data</button>
+                  <button type="button" class="btn btn-primary copy-result-btn">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </button>
+                  <pre class="code-block msgbox json" id="api_numbers_result">
+Click on Get Data to Get the data!
+                  </pre>
                 </div>
-              </div>
-              <div class="api-result">
-                <h2 class="title">Result</h2>
-                <button type="button" class="btn btn-primary copy-result-btn" id="copy_api_result">
-                  <i class="fa-regular fa-clipboard"></i>
-                </button>
-                <pre class="code-block" id="result_block">
-Use any of the above API endpoints for the results!
-                </pre>
+                <div class="card">
+                  <div class="title">PAN<span class="api-status-mark" id="api_pan_status"></span></div>
+                  <input type="text" class="api_input" id="api_pan_input" placeholder="Enter PAN Number"/>
+                  <button class="btn btn-primary" type="button" id="get_pan_btn">Get Details</button>
+                  <button type="button" class="btn btn-primary copy-result-btn">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </button>
+                  <pre class="code-block msgbox json" id="api_pan_result">
+Click on Get Details to Get the data!
+                  </pre>
+                </div>
               </div>
             </div>
           </div>
@@ -167,8 +180,40 @@ Use any of the above API endpoints for the results!
           </div>
           <div id="dateHepler" class="panel-collapse collapse" role="tabpanel" aria-labelledby="dateHeplerSection">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
-              moon officia aute, non cupidatat skateboard dolor brunch.
+              <div class="api_cards">
+                <div class="card">
+                  <div class="title">Today <span class="api-status-mark" id="today_date_status"></span></div>
+                  <button class="btn btn-primary" type="button" id="get_today_btn">Referesh</button>
+                  <button type="button" class="btn btn-primary copy-result-btn">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </button>
+                  <pre class="code-block msgbox" id="api_today_result">
+Today Date
+                  </pre>
+                </div>
+                <div class="card">
+                  <div class="title">Int to Nepali Date<span class="api-status-mark" id="api_date_to_nep_status"></span></div>
+                  <input type="text" class="api_input" id="api_date_to_nep_input" placeholder="Enter Your Number"/>
+                  <button class="btn btn-primary" type="button" id="get_date_to_nep_btn">Get Nepali Date</button>
+                  <button type="button" class="btn btn-primary copy-result-btn">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </button>
+                  <pre class="code-block msgbox" id="api_date_to_nep_result">
+Input date to convert!
+                  </pre>
+                </div>
+                <div class="card">
+                  <div class="title">Nepali to Int Date<span class="api-status-mark" id="api_date_to_int_status"></span></div>
+                  <input type="text" class="api_input" id="api_date_to_int_input" placeholder="Enter Your Number"/>
+                  <button class="btn btn-primary" type="button" id="get_date_to_int_btn">Get Int. Date</button>
+                  <button type="button" class="btn btn-primary copy-result-btn">
+                    <i class="fa-regular fa-clipboard"></i>
+                  </button>
+                  <pre class="code-block msgbox" id="api_date_to_int_result">
+Input date to convert!
+                  </pre>
+                </div>
+              </div>
             </div>
           </div>
         </div>

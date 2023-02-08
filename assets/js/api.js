@@ -115,19 +115,22 @@ function generatePIN(length = 4) {
   return generatedPIN;
 }
 
-clipboard.addEventListener("click", () => {
+function copyToClipboard(content) {
   const textarea = document.createElement("textarea");
+  textarea.value = content;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  textarea.remove();
+}
+
+clipboard.addEventListener("click", () => {
   const password = resultEl.innerText;
 
   if (!password) {
     return;
   }
-
-  textarea.value = password;
-  document.body.appendChild(textarea);
-  textarea.select();
-  document.execCommand("copy");
-  textarea.remove();
+  copyToClipboard(password);
   let pinPassword = $("#pinPassword").is(":checked");
   if (pinPassword) {
     toast("Password copied to clipboard!");
@@ -191,19 +194,29 @@ const randomFunc = {
 /* api works goes here */
 const API = "https://sapi.deta.dev";
 
+let copyResultBtns = $(".copy-result-btn");
+
 let getHomeBtn = $("#get_home_btn");
 let homeStatus = document.querySelector("#api_home");
-let homeStatusText = $("#api_home_ok")
+let homeStatusText = $("#api_home_ok");
 
 let getNumbersBtn = $("#get_numbers_btn");
+let numberStatus = document.querySelector("#api_numbers_status");
 
-let resultBlock = $("#result_block");
+let getPANBtn = $("#get_pan_btn");
+let panStaus = document.querySelector("#api_pan_status");
+
+copyResultBtns.on("click", (event) => {
+  let result = event.currentTarget.nextElementSibling.innerHTML;
+  copyToClipboard(result);
+  toast("Result copied to the Clipboard!");
+});
 
 getHomeBtn.on("click", () => {
-  resultBlock.html("Getting Home...");
+  let result = $("#api_home_result");
 
   let api_url = API;
-
+  result.html("Checking the API...");
   fetch(api_url, {
     headers: {
       Accept: "application/json",
@@ -211,14 +224,160 @@ getHomeBtn.on("click", () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if(!data){
+      if (!data) {
         homeStatus.style.background = "red";
-        homeStatusText.innerText = "Not Okay"
-        resultBlock.html("Something went wrong!");
+        result.html("Something went wrong!");
       } else {
         homeStatus.style.background = "#56c080";
-        homeStatusText.innerText = "Okay";
-        resultBlock.html(JSON.stringify(data, null, 2));
+        result.html(JSON.stringify(data, null, 2));
+      }
+    });
+});
+
+getNumbersBtn.on("click", () => {
+  let result = $("#api_numbers_result");
+  let number = $("#api_numbers_input");
+  if (number.val() == "") {
+    result.html("Please input your number!");
+    return;
+  }
+  let api_url = `${API}/utilities/v1/numbers/nep_num/${number.val()}`;
+  result.html("Getting Numbers...");
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        numberStatus.style.background = "red";
+        result.html("Something went wrong!");
+      } else {
+        number.val("");
+        numberStatus.style.background = "#56c080";
+        result.html(JSON.stringify(data, null, 2));
+      }
+    });
+});
+
+getPANBtn.on("click", () => {
+  let result = $("#api_pan_result");
+  let pan = $("#api_pan_input");
+  if (pan.val() == "") {
+    result.html("Please input your number!");
+    return;
+  }
+  let api_url = `${API}/pan/v1/${pan.val()}`;
+  result.html("Getting Pan Details...");
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        panStaus.style.background = "red";
+        result.html("Something went wrong!");
+      } else {
+        pan.val("");
+        panStaus.style.background = "#56c080";
+        result.html(JSON.stringify(data, null, 2));
+      }
+    });
+});
+
+
+/* Date Scripts Starts here */
+
+let getTodayBtn = $("#get_today_btn");
+let todayDateStatus = document.querySelector("#today_date_status");
+
+getTodayBtn.on("click", () => {
+  let result = $("#api_today_result");
+
+  let api_url = `${API}/today`;
+  result.html("fetching today's date...");
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        todayDateStatus.style.background = "red";
+        result.html("Something went wrong!");
+      } else {
+        todayDateStatus.style.background = "#56c080";
+        result.html(`${data.full_nep_date_nep}(${data.full_int_date})`);
+      }
+    });
+});
+
+let getNepDateBtn = $("#get_date_to_nep_btn");
+let getNepDateStatus = document.querySelector("#api_date_to_nep_status");
+
+getNepDateBtn.on("click", () => {
+  let result = $("#api_date_to_nep_result");
+
+  let datestring = $("#api_date_to_nep_input");
+
+  if (datestring.val() == "") {
+    result.html("Please input date!");
+    return;
+  }
+
+  let api_url = `${API}/date/to/nep/${datestring.val()}`;
+  result.html("converting the given date...");
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        getNepDateStatus.style.background = "red";
+        result.html("Something went wrong!");
+      } else {
+        datestring.val("");
+        getNepDateStatus.style.background = "#56c080";
+        result.html(`${data.miti}(${data.int_date})`);
+      }
+    });
+});
+
+let getIntDateBtn = $("#get_date_to_int_btn");
+let getIntDateStatus = document.querySelector("#api_date_to_int_status");
+
+getIntDateBtn.on("click", () => {
+  let result = $("#api_date_to_int_result");
+
+  let datestring = $("#api_date_to_int_input");
+
+  if (datestring.val() == "") {
+    result.html("Please input date!");
+    return;
+  }
+
+  let api_url = `${API}/date/to/int/${datestring.val()}`;
+  result.html("converting the given date...");
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        getIntDateStatus.style.background = "red";
+        result.html("Something went wrong!");
+      } else {
+        datestring.val("");
+        getIntDateStatus.style.background = "#56c080";
+        result.html(`${data.miti}(${data.int_date})`);
       }
     });
 });

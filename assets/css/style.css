@@ -387,6 +387,7 @@ hr {
 }
 
 .card {
+  width: 95%;
   background: #fbfbfb;
 	border: 1px solid #dddddd;
 	border-radius: 5px;
@@ -399,14 +400,16 @@ hr {
 
 .msgbox {
   min-width: 100px;
+  width: 100%;
   text-align: center;
   padding: 0.6rem;
 	background: rgba(101, 170, 126, 0.6);
 	border: 1px solid #008800;
-  color: #008800;
+  color: #005500;
 	border-radius: 5px;
   font-family: 'Times New Roman', Times, serif;
   font-style: italic;
+  font-size: 1rem;
   font-weight: 400;
 }
 
@@ -414,5 +417,9 @@ pre{
   background:rgba(255,255,255, 0.5);
   color:rgba(0,0,0,1);
   padding: 5px;
+  text-align: start;
+}
+
+.json{
   text-align: start;
 }
