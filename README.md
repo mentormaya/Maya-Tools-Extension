@@ -32,6 +32,17 @@ The only thing remaining now is to activate and pin the extension which can be d
 
 Pining the extension can be done by just going to the extension section of the browser toolbar and turning the pin button next the extension on.
 
+
+## Updating the Extension
+
+To update the extension follow these steps:
+
+* Goto the folder where the extension files are saved.
+* Open terminal in the folder.
+* run the command `git pull`.
+
+And done! Any update available will be downloaded automatically!
+
 ## Contiribution
 
 Comming Soon
