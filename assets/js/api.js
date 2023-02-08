@@ -7,22 +7,20 @@ $(".panel-collapse").on("hide.bs.collapse", function () {
   $(this).siblings(".panel-heading").removeClass("active");
 });
 
-
 /*
 Password Generator Script starts from here
 */
-$('#length').on("change mousemove", function() {
+$("#length").on("change mousemove", function () {
   $("#length_update").html($(this).val());
-  if($("#pinPassword").is(":checked"))
+  if ($("#pinPassword").is(":checked"))
     localStorage.setItem("maya_password_length", $(this).val());
-  else
-    localStorage.setItem("maya_pin_length", $(this).val());
+  else localStorage.setItem("maya_pin_length", $(this).val());
 });
 
 $("#pinPassword").on("change", () => {
   let pinPassword = $("#pinPassword").is(":checked");
-  localStorage.setItem('pinPassword', pinPassword);
-  if (pinPassword){
+  localStorage.setItem("pinPassword", pinPassword);
+  if (pinPassword) {
     var length = localStorage.getItem("maya_password_length");
   } else {
     var length = localStorage.getItem("maya_pin_length");
@@ -33,30 +31,31 @@ $("#pinPassword").on("change", () => {
 
 $("#upper").on("change", () => {
   let upper = $("#upper").is(":checked");
-  localStorage.setItem('upper', upper);
+  localStorage.setItem("upper", upper);
 });
 
 $("#lower").on("change", () => {
   let lower = $("#lower").is(":checked");
-  localStorage.setItem('lower', lower);
+  localStorage.setItem("lower", lower);
 });
 
 $("#numbers").on("change", () => {
   let number = $("#numbers").is(":checked");
-  localStorage.setItem('number', number);
+  localStorage.setItem("number", number);
 });
 
 $("#symbols").on("change", () => {
   let symbols = $("#symbols").is(":checked");
-  localStorage.setItem('symbols', symbols);
+  localStorage.setItem("symbols", symbols);
 });
 
 //initialization of all values from the localStorage
-(function(){
+(function () {
   let pinPassword = localStorage.getItem("pinPassword");
   pinPassword = JSON.parse(pinPassword);
-  document.querySelector("#pinPassword").checked = pinPassword === null ? true : pinPassword;
-  if (pinPassword){
+  document.querySelector("#pinPassword").checked =
+    pinPassword === null ? true : pinPassword;
+  if (pinPassword) {
     var length = localStorage.getItem("maya_password_length");
     length = length === null ? 10 : length;
   } else {
@@ -66,14 +65,17 @@ $("#symbols").on("change", () => {
   $("#length").val(Number(length));
   $("#length_update").html(length);
   let upper = localStorage.getItem("upper");
-  document.querySelector("#upper").checked = upper === null ? true : JSON.parse(upper);
+  document.querySelector("#upper").checked =
+    upper === null ? true : JSON.parse(upper);
   let lower = localStorage.getItem("lower");
-  document.querySelector("#lower").checked = lower === null ? true : JSON.parse(lower);
+  document.querySelector("#lower").checked =
+    lower === null ? true : JSON.parse(lower);
   let number = localStorage.getItem("number");
-  document.querySelector("#numbers").checked = number === null ? true : JSON.parse(number);
+  document.querySelector("#numbers").checked =
+    number === null ? true : JSON.parse(number);
   let symbols = localStorage.getItem("symbols");
-  document.querySelector("#symbols").checked = symbols === null ? true : JSON.parse(symbols);
-  console.log(pinPassword, length, upper, lower);
+  document.querySelector("#symbols").checked =
+    symbols === null ? true : JSON.parse(symbols);
 })();
 
 const resultEl = document.getElementById("result");
@@ -91,14 +93,20 @@ generateBtn.addEventListener("click", () => {
 
   let length = $("#length").val();
 
-  if(pinPassword){
-    resultEl.innerText = generatePassword(lower, upper, number, symbols, length);
+  if (pinPassword) {
+    resultEl.innerText = generatePassword(
+      lower,
+      upper,
+      number,
+      symbols,
+      length
+    );
   } else {
     resultEl.innerText = generatePIN(length);
   }
 });
 
-function generatePIN(length = 4){
+function generatePIN(length = 4) {
   let generatedPIN = "";
   for (let i = 0; i < length; i++) {
     generatedPIN += getRandomNumber();
@@ -121,9 +129,9 @@ clipboard.addEventListener("click", () => {
   document.execCommand("copy");
   textarea.remove();
   let pinPassword = $("#pinPassword").is(":checked");
-  if (pinPassword){
+  if (pinPassword) {
     toast("Password copied to clipboard!");
-  } else{
+  } else {
     toast("PIN copied to clipboard!");
   }
 });
@@ -180,7 +188,37 @@ const randomFunc = {
 
 // Password Generator Ends Here
 
-
 /* api works goes here */
+const API = "https://sapi.deta.dev";
 
+let getHomeBtn = $("#get_home_btn");
+let homeStatus = document.querySelector("#api_home");
+let homeStatusText = $("#api_home_ok")
 
+let getNumbersBtn = $("#get_numbers_btn");
+
+let resultBlock = $("#result_block");
+
+getHomeBtn.on("click", () => {
+  resultBlock.html("Getting Home...");
+
+  let api_url = API;
+
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if(!data){
+        homeStatus.style.background = "red";
+        homeStatusText.innerText = "Not Okay"
+        resultBlock.html("Something went wrong!");
+      } else {
+        homeStatus.style.background = "#56c080";
+        homeStatusText.innerText = "Okay";
+        resultBlock.html(JSON.stringify(data, null, 2));
+      }
+    });
+});

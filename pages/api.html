@@ -70,30 +70,50 @@
     <div class="wrapper center-block">
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
-          <div class="panel-heading" role="tab" id="utilitiesTools">
+          <div class="panel-heading active" role="tab" id="utilitiesTools">
             <h4 class="panel-title">
-              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#utilities_api"
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#utilities_api"
                 aria-expanded="false" aria-controls="utilities_api">
                 Utilities API
               </a>
             </h4>
           </div>
-          <div id="utilities_api" class="panel-collapse collapse" role="tabpanel" aria-labelledby="utilitiesTools">
+          <div id="utilities_api" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="utilitiesTools">
             <div class="panel-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf
+              <div class="api_cards">
+                <div class="card">
+                  <div class="title">API Status <span class="api-status-mark" id="api_home"></span></div>
+                  <div class="api-status-text msgbox" id="api_home_ok">Okay</div>
+                  <button class="btn btn-primary" type="button" id="get_home_btn">Referesh</button>
+                </div>
+                <div class="card">
+                  <div class="title">Numbers<span class="api-status-mark" id="api_numbers"></span></div>
+                  <input type="text" class="api_input" id="api_numbers" placeholder="Enter Your Number"/>
+                  <button class="btn btn-primary" type="button" id="get_numbers_btn">Get Data</button>
+                </div>
+              </div>
+              <div class="api-result">
+                <h2 class="title">Result</h2>
+                <button type="button" class="btn btn-primary copy-result-btn" id="copy_api_result">
+                  <i class="fa-regular fa-clipboard"></i>
+                </button>
+                <pre class="code-block" id="result_block">
+Use any of the above API endpoints for the results!
+                </pre>
+              </div>
             </div>
           </div>
         </div>
         <div class="panel panel-default">
-          <div class="panel-heading active" role="tab" id="passwordPinGeneratorContent">
+          <div class="panel-heading" role="tab" id="passwordPinGeneratorContent">
             <h4 class="panel-title">
-              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#passwordPinGenerator"
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#passwordPinGenerator"
                 aria-expanded="true" aria-controls="passwordPinGenerator">
                 Password and PIN Generator
               </a>
             </h4>
           </div>
-          <div id="passwordPinGenerator" class="panel-collapse collapse in" role="tabpanel"
+          <div id="passwordPinGenerator" class="panel-collapse collapse" role="tabpanel"
             aria-labelledby="passwordPinGeneratorContent">
             <div class="panel-body">
               <div class="result-container">

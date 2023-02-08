@@ -168,3 +168,53 @@
   margin: 5px;
   position: relative;
 }
+
+.api_cards{
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card{
+  padding: 2rem;
+  /* aspect-ratio: 1 / 1; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.card>*{
+  margin: 0.2rem;
+}
+
+.card .title, .api-result .title{
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.card .title .api-status-mark{
+  width: 10px;
+  height: 10px;
+  background-color: #56c080;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 0.4rem;
+}
+
+.api-result{
+  position: relative;
+}
+
+.api-result h2{
+  margin-top: 10px;
+}
+
+.copy-result-btn{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
