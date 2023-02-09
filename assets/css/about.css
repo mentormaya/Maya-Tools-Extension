@@ -12,7 +12,7 @@
 .modal-content{
     padding: 0.6em;
 }
-.card {
+.about-card {
     background: url('../icons/maya_tools/icon128.png') no-repeat center;
     width: var(--card-width);
     /* height: var(--card-height); */
@@ -29,20 +29,20 @@
     font-family: cursive;
 }
 
-.card:hover {
+.about-card:hover {
     color: rgb(88 199 250 / 100%);
     transition: color 1s;
     background: #fbfbfb;
     border: 1px solid #dddddd;
 }
 
-.card:hover:before,
-.card:hover:after {
+.about-card:hover:before,
+.about-card:hover:after {
     animation: none;
     opacity: 0;
 }
 
-.card::before {
+.about-card::before {
     content: "";
     width: 104%;
     height: 102%;
@@ -58,7 +58,7 @@
     animation: spin 2.5s linear infinite;
 }
 
-.card::after {
+.about-card::after {
     position: absolute;
     content: "";
     top: calc(var(--card-height) / 6);
