@@ -5,6 +5,8 @@ const expire_time = document.querySelector('.expire-time')
 const video_list = document.querySelector('.v-links')
 const list = document.querySelector('.links')
 
+const API = "https://sapi.deta.dev";
+
 let currentVideoData;
 
 async function getCurrentTab() {
@@ -86,9 +88,29 @@ function showLinks(details, streams){
   populateLinks(details, streams);
 }
 
+function getToday(){
+  let result = document.querySelector("#home_today");
+
+  let api_url = `${API}/today`;
+  result.innerHTML = "fetching today's date...";
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (!data) {
+        result.innerHTML = "Something went wrong!";
+      } else {
+        result.innerHTML = `${data.full_nep_date_nep}(${data.full_int_date})`;
+      }
+    });
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
   clearLinks();
-
+  getToday();
   const activeTab = await getCurrentTab();
 
   if (activeTab.url.includes("youtube.com/watch")){
