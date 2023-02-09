@@ -16,7 +16,7 @@
     "<all_urls>"
   ],
   "action": {
-    "default_popup": "/pages/api.html",
+    "default_popup": "/pages/downloader.html",
     "default_icon": {
       "16": "/assets/icons/maya_tools/icon16.png",
       "32": "/assets/icons/maya_tools/icon32.png",

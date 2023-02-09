@@ -11,6 +11,8 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/button.css">
+  <link rel="stylesheet" href="../assets/css/toast.css">
+  <link rel="stylesheet" href="../assets/css/downloader.css">
 </head>
 
 <body>
@@ -65,27 +67,37 @@
   </div>
   <div class="modal-content">
     <div class="content-header">
-      <h3 class="content-title">No API Found!</h3>
-      <h4 id="expire-in">Expires in <span class='badge danger expire-time'>12345</span>s</h4>
+      <h3 class="content-title">No Video Links Found!</h3>
+      <h4 id="expire-in">Expires in <span class='badge danger expire-time'>12345</span></h4>
     </div>
-    <ol class="links">
-      <li class="link-item">
-        <span class="video-title">Video Title Here</span>
-        <span class="media">Video</span>
-        <span class="format">MP4</span>
-        <span class="quality-label">1080p</span>
-        <a href="https://ajaysingh.com.np" target="_blank" class="download"><i
-            class="fa-solid fa-cloud-arrow-down"></i></a>
-      </li>
-      <li class="link-item">
-        <span class="video-title">Video Title Here</span>
-        <span class="media">Video</span>
-        <span class="format">MP4</span>
-        <span class="quality-label">720p</span>
-        <a href="https://ajaysingh.com.np" target="_blank" class="download"><i
-            class="fa-solid fa-cloud-arrow-down"></i></a>
-      </li>
-    </ol>
+    <div class="content-body">
+      <ol class="v-links">
+        <li class="link-item">
+          <div class="v-info">
+            <span class="video-title">Video Title Here</span>
+            <span class="media">Video</span>
+            <span class="format">MP4</span>
+            <span class="quality-label">1080p</span>
+          </div>
+          <div class="download-btn">
+            <a href="https://ajaysingh.com.np" target="_blank" class="download"><i
+                class="fa-solid fa-cloud-arrow-down"></i></a>
+          </div>
+        </li>
+        <li class="link-item">
+          <div class="v-info">
+            <span class="video-title">Video Title Here</span>
+            <span class="media">Video</span>
+            <span class="format">MP4</span>
+            <span class="quality-label">720p</span>
+          </div>
+          <div class="download-btn">
+            <a href="https://ajaysingh.com.np" target="_blank" class="download"><i
+                class="fa-solid fa-cloud-arrow-down"></i></a>
+          </div>
+        </li>
+      </ol>
+    </div>
   </div>
   <hr>
   <div class="modal-footer">
@@ -126,7 +138,8 @@
       <span class="version">(v1.0.0)</span>
     </div>
   </div>
-  <script src="../assets/js/popup.js" type="module"></script>
+  <script src="../assets/js/toast.js"></script>
+  <script src="../assets/js/downloader.js" type="module"></script>
 </body>
 
 </html>
