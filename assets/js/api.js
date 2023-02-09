@@ -288,7 +288,6 @@ getPANBtn.on("click", () => {
     });
 });
 
-
 /* Date Scripts Starts here */
 
 let getTodayBtn = $("#get_today_btn");
@@ -380,4 +379,102 @@ getIntDateBtn.on("click", () => {
         result.html(`${data.miti}(${data.int_date})`);
       }
     });
+});
+
+let refreshResultBtns = $(".refresh-result-btn");
+
+(function(){
+  let api_url = `${API}/nea/v1/list/meters`;
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      let json = response.json();
+      // console.log(json);
+      return json;
+    })
+    .then((meters_json) => {
+      if (!meters_json) {
+        console.log(meters_json);
+      } else {
+        meters_json.forEach((meter) => {
+          if(!meter.includes("OLD"))
+            $("#api_meter_bill_select").append(new Option(meter, meter));
+        });
+      }
+    });
+})();
+
+async function fetchBills(api_url, status, result, billOf = null, input = null){
+  fetch(api_url, {
+    headers: {
+      Accept: "application/json",
+    },
+  })
+    .then((response) => {
+      let json = response.json();
+      // console.log(json);
+      return json;
+    })
+    .then((data) => {
+      if (!data) {
+        console.log(data);
+        status.style.background = "red";
+        result.html("Something went wrong!");
+        toast("Something went wrong!");
+        return false;
+      } else {
+        if(input !== null) input.val("");
+        status.style.background = "#56c080";
+        let bills = {};
+        if(Array.isArray(data)){
+          data.forEach((bill) => {
+            bills[bill.name] = bill.state
+          });
+        } else {
+          bills[data.name] = data.state
+        }
+        result.html(JSON.stringify(bills, null, 2));
+        if(billOf !== null){
+          toast(`${meter} fetched from the API!`);
+        } else {
+          toast(`NEA Bills fetched from the API!`);
+        }
+        return true;
+      }
+    });
+}
+
+refreshResultBtns.on("click", async (event) => {
+  let btn = event.currentTarget;
+  let result, status, api_url;
+  switch (btn.dataset.trigger) {
+    case "home_bills":
+      //fetch home bills from the api
+      result = $("#api_nea_bills_result");
+      status = document.querySelector("#api_nea_bills_status");
+
+      api_url = `${API}/nea/v1/`;
+
+      result.html("fetching bills...");
+      await fetchBills(api_url, status, result);
+      break;
+
+    case "meter_bill":
+      //fetch meter bill from the api
+      let meter = $("#api_meter_bill_select").val();
+      result = $("#api_meter_bill_result");
+      status = document.querySelector("#api_meter_bill_status");
+
+      api_url = `${API}/nea/v1/meter/${meter}`;
+
+      result.html("fetching bills...");
+      await fetchBills(api_url, status, result, meter);
+      break;
+
+    default:
+      break;
+  }
 });

@@ -232,15 +232,37 @@ Input date to convert!
             aria-labelledby="neaBillHelperSection">
             <div class="panel-body">
               <div class="card">
-                <div class="title">Nepali to Int Date<span class="api-status-mark" id="api_date_to_int_status"></span>
+                <div class="title">Home Bills Check<span class="api-status-mark" id="api_nea_bills_status"></span>
                 </div>
-                <input type="text" class="api_input" id="api_date_to_int_input" placeholder="Enter Your Number" />
-                <button class="btn btn-primary" type="button" id="get_date_to_int_btn">Get Int. Date</button>
-                <button type="button" class="btn btn-primary copy-result-btn">
-                  <i class="fa-regular fa-clipboard"></i>
+                <button type="button" class="btn btn-primary refresh-result-btn" data-trigger="home_bills">
+                  <i class="fa-sharp fa-solid fa-rotate"></i>
                 </button>
-                <pre class="code-block msgbox" id="api_date_to_int_result">
-Input date to convert!
+                <pre class="code-block msgbox json" id="api_nea_bills_result">
+Hit referesh to load the Bills!
+                </pre>
+              </div>
+              <div class="card">
+                <div class="title">Meter Bill<span class="api-status-mark" id="api_meter_bill_status"></span>
+                </div>
+                <select class="form-select" aria-label="Default select example" id="api_meter_bill_select">
+                  <option selected>Select Meter</option>
+                </select>
+                <button type="button" class="btn btn-primary refresh-result-btn" data-trigger="meter_bill">
+                  <i class="fa-sharp fa-solid fa-rotate"></i>
+                </button>
+                <pre class="code-block msgbox json" id="api_meter_bill_result">
+Hit referesh to load the Bills!               </pre>
+              </div>
+              <div class="card">
+                <div class="title">Bill Enquiry<span class="api-status-mark" id="bill_enquiry_status"></span>
+                </div>
+                <input type="text" class="api_input" id="sc_number_input" placeholder="Enter Your SC Number" />
+                <input type="text" class="api_input" id="consumer_id_input" placeholder="Enter Your Consumer ID" />
+                <button type="button" class="btn btn-primary refresh-result-btn" data-trigger="bill_enquiry">
+                  <i class="fa-sharp fa-solid fa-rotate"></i>
+                </button>
+                <pre class="code-block msgbox json" id="bill_enquiry_result">
+Hit referesh to load the Bills!
                 </pre>
               </div>
             </div>

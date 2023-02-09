@@ -208,7 +208,7 @@
   margin-top: 10px;
 }
 
-.copy-result-btn{
+.copy-result-btn, .refresh-result-btn{
   position: absolute;
   top: 0;
   right: 0;
