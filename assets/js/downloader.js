@@ -38,6 +38,14 @@ function toggleList() {
   }
 }
 
+function parseURL(video) {
+  let url = "";
+  const cipherParams = new URLSearchParams(video.signatureCipher);
+  url = cipherParams.get("url");
+  console.log(url);
+  return url;
+}
+
 function populateLinks(details, streams) {
   let adaptive = streams.adaptiveFormats;
   let progressive = streams.formats;
@@ -48,41 +56,42 @@ function populateLinks(details, streams) {
   let video_url;
 
   progressive.forEach((video, index) => {
-    let mime = video.mimeType.split(";")[0].split("/");
-    video_url = video.url;
-    if (!video_url) return;
-    list_html += `<li class="link-item">
-      <div class="v-info">
-        <span class="video-title">${video_title}</span>
-        <span class="media">(${mime[0]})</span>
-        <span class="format">${mime[1].toUpperCase()}</span> 
-        <span class="quality-label">${video.qualityLabel}</span>
-      </div>
-      <div class="download-btn">
-        <a class="download" download="${video_title}" href="${video_url}"><i class="fa-solid fa-cloud-arrow-down"></i></a>
-      </div>
-    </li>`;
+    video_url = video.url ? video.url : parseURL(video);
+    if (video_url) {
+      let mime = video.mimeType.split(";")[0].split("/");
+      list_html += `<li class="link-item">
+        <div class="v-info">
+          <span class="video-title">${video_title}</span>
+          <span class="media">(${mime[0]})</span>
+          <span class="format">${mime[1].toUpperCase()}</span> 
+          <span class="quality-label">${video.qualityLabel}</span>
+        </div>
+        <div class="download-btn">
+          <a download="${video_title}" href="${video_url}" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+        </div>
+      </li>`;
+    }
   });
 
   adaptive.forEach((video, index) => {
     video_url = video.url;
-    if (!video_url) return;
-    let mime = video.mimeType.split(";")[0].split("/");
-    list_html += `<li class="link-item">
-    <div class="v-info">
-        <span class="video-title">${video_title}</span>
-        <span class="media">(${mime[0]})</span>
-        <span class="format">${mime[1].toUpperCase()}</span>
-        <span class="quality-label">${
-          video.qualityLabel ? video.qualityLabel : video.audioQuality
-        }</span>
-    </div>
-    <div class="download-btn">
-        <a class="download" download="${video_title}" href="${video_url}"><i class="fa-solid fa-cloud-arrow-down"></i></a>
-    </div>
-  </li>`;
+    if (video_url) {
+      let mime = video.mimeType.split(";")[0].split("/");
+      list_html += `<li class="link-item">
+        <div class="v-info">
+            <span class="video-title">${video_title}</span>
+            <span class="media">(${mime[0]})</span>
+            <span class="format">${mime[1].toUpperCase()}</span>
+            <span class="quality-label">${
+              video.qualityLabel ? video.qualityLabel : video.audioQuality
+            }</span>
+        </div>
+        <div class="download-btn">
+            <a download="${video_title}" href="${video_url}" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+        </div>
+      </li>`;
+    }
   });
-
   video_list.innerHTML = list_html;
 }
 
