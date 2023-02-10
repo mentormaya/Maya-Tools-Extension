@@ -44,9 +44,6 @@
   flex-direction: row;
 }
 
-.v-links .link-item .v-info {
-}
-
 .v-links .link-item .download-btn {
   min-width: 10%;
   display: flex;
