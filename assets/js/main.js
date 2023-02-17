@@ -10,9 +10,10 @@ var videoID;
 function downloadVideo() {
   chrome.storage.local.get(["currentVideoData"]).then((result) => {
     currentVideoData = result.currentVideoData;
-    if (videoID === currentVideoData.details.videoId) {
-      alert("Links found to be downloadable!");
-    } else console.log("Links are stale! Please reload the Page!");
+    chrome.runtime.sendMessage({
+      action: "download",
+      currentVideoData: currentVideoData,
+    });
   });
 }
 

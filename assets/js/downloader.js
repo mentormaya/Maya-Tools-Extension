@@ -6,6 +6,8 @@ const video_list = document.querySelector(".v-links");
 let currentVideoData,
   videoID = null;
 
+let download_btns;
+
 async function getCurrentTab() {
   let queryOptions = { active: true, currentWindow: true };
   let [tab] = await chrome.tabs.query(queryOptions);
@@ -48,7 +50,7 @@ function parseURL(video) {
 
 function populateLinks(details, streams) {
   let adaptive = streams.adaptiveFormats;
-  let progressive = streams.formats;
+  let progressive = streams.formats.reverse();
 
   let video_title = details.title.split("|")[0];
 
@@ -99,7 +101,7 @@ function populateLinks(details, streams) {
     }
   });
   video_list.innerHTML = list_html;
-  const download_btns = document.querySelectorAll(".download-btn a");
+  download_btns = document.querySelectorAll(".download-btn a");
   download_btns.forEach((btn) => btn.addEventListener("click", downloadVideo));
 }
 
@@ -183,5 +185,11 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     currentVideoData = request.currentVideoData;
     videoID = request.currentVideoData.details.videoId;
     showLinks(currentVideoData.details, currentVideoData.streams);
+  }
+});
+chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+  if (request.action === "download") {
+    videoID = request.currentVideoData.details.videoId;
+    download_btns[0].click();
   }
 });
