@@ -44,13 +44,18 @@
   flex-direction: row;
 }
 
-.v-links .link-item .v-info {
-}
-
 .v-links .link-item .download-btn {
   min-width: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 1.6rem;
+}
+
+.download-progress{
+  height: 3px;
+  border: 1px solid #dddddd;
+  background: #028f68;
+  width: 0;
+  display: block;
 }

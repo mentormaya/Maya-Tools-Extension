@@ -55,7 +55,7 @@ function populateLinks(details, streams) {
   let list_html = "";
   let video_url;
 
-  progressive.forEach((video, index) => {
+  progressive.forEach((video) => {
     video_url = video.url ? video.url : parseURL(video);
     if (video_url) {
       let mime = video.mimeType.split(";")[0].split("/");
@@ -65,15 +65,18 @@ function populateLinks(details, streams) {
           <span class="media">(${mime[0]})</span>
           <span class="format">${mime[1].toUpperCase()}</span> 
           <span class="quality-label">${video.qualityLabel}</span>
+          <div class="download-progress"></div>
         </div>
         <div class="download-btn">
-          <a download="${video_title}" href="${video_url}" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+          <a data-name="${video_title}" data-mime="${mime[0]}/${
+        mime[1]
+      }" href="#" data-link="${video_url}" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
         </div>
       </li>`;
     }
   });
 
-  adaptive.forEach((video, index) => {
+  adaptive.forEach((video) => {
     video_url = video.url;
     if (video_url) {
       let mime = video.mimeType.split(";")[0].split("/");
@@ -85,14 +88,65 @@ function populateLinks(details, streams) {
             <span class="quality-label">${
               video.qualityLabel ? video.qualityLabel : video.audioQuality
             }</span>
+            <div class="download-progress"></div>
         </div>
         <div class="download-btn">
-            <a download="${video_title}" href="${video_url}" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
+            <a data-name="${video_title}" data-mime="${mime[0]}/${
+              mime[1]
+            }" href="#" data-link="${video_url}" target="_blank"><i class="fa-solid fa-cloud-arrow-down"></i></a>
         </div>
       </li>`;
     }
   });
   video_list.innerHTML = list_html;
+  const download_btns = document.querySelectorAll(".download-btn a");
+  download_btns.forEach((btn) => btn.addEventListener("click", downloadVideo));
+}
+
+async function downloadVideo(e) {
+  e.preventDefault();
+  const link = e.target.parentElement.dataset.link;
+  const name = e.target.parentElement.dataset.name;
+  const mime = e.target.parentElement.dataset.mime;
+  const progressbar =
+    e.target.parentNode.parentNode.parentNode.firstChild.nextSibling.lastChild
+      .previousElementSibling;
+
+  fetch(link, { method: "get", mode: "no-cors", referrerPolicy: "no-referrer" })
+    .then(async (res) => {
+      if (res.ok) {
+        const reader = res.body.getReader();
+        // Step 2: get total length
+        const contentLength = +res.headers.get("Content-Length");
+        // Step 3: read the data
+        let receivedLength = 0; // received that many bytes at the moment
+        let chunks = []; // array of received binary chunks (comprises the body)
+        progressbar.style.display = "block";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) {
+            break;
+          }
+          chunks.push(value);
+          receivedLength += value.length;
+          let percentage = (receivedLength / contentLength) * 100;
+          progressbar.style.width = `${percentage}%`;
+          // console.log(`${percentage}%`)
+        }
+        return new Blob(chunks, { type: mime });
+      } else {
+        toast("Something went wrong! Could not get the response!")
+      }
+    })
+    .then((res) => {
+      const aElement = document.createElement("a");
+      aElement.setAttribute("download", name + '.' + mime.split("/")[1]);
+      const href = URL.createObjectURL(res);
+      aElement.href = href;
+      aElement.setAttribute("target", "_blank");
+      aElement.click();
+      URL.revokeObjectURL(href);
+    });
 }
 
 function showLinks(details, streams) {
