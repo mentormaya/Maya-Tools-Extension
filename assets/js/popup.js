@@ -6,10 +6,10 @@ async function getCurrentTab() {
   return tab;
 }
 
-function getToday(){
+function getToday() {
   let result = document.querySelector("#home_today");
 
-  let api_url = `${API}/today`;
+  let api_url = `${API}/date/today`;
   result.innerHTML = "fetching today's date...";
   fetch(api_url, {
     headers: {

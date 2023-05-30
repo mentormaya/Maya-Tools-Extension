@@ -192,7 +192,7 @@ const randomFunc = {
 // Password Generator Ends Here
 
 /* api works goes here */
-const API = "https://sapi.deta.dev";
+const API = "https://scraperapi-1-d6205863.deta.app";
 
 let copyResultBtns = $(".copy-result-btn");
 
@@ -241,7 +241,7 @@ getNumbersBtn.on("click", () => {
     result.html("Please input your number!");
     return;
   }
-  let api_url = `${API}/utilities/v1/numbers/nep_num/${number.val()}`;
+  let api_url = `${API}/utils/numbers/nep_num/${number.val()}`;
   result.html("Getting Numbers...");
   fetch(api_url, {
     headers: {
@@ -296,7 +296,7 @@ let todayDateStatus = document.querySelector("#today_date_status");
 getTodayBtn.on("click", () => {
   let result = $("#api_today_result");
 
-  let api_url = `${API}/today`;
+  let api_url = `${API}/date/today`;
   result.html("fetching today's date...");
   fetch(api_url, {
     headers: {
@@ -383,35 +383,55 @@ getIntDateBtn.on("click", () => {
 
 let refreshResultBtns = $(".refresh-result-btn");
 
-(function(){
-  let api_url = `${API}/nea/v1/list/meters`;
-  fetch(api_url, {
+async function getData(url, callback, elem) {
+  fetch(url, {
     headers: {
       Accept: "application/json",
     },
   })
     .then((response) => {
       let json = response.json();
-      // console.log(json);
       return json;
     })
-    .then((meters_json) => {
-      if (!meters_json) {
-        console.log(meters_json);
-      } else {
-        meters_json.forEach((meter) => {
-          if(!meter.includes("OLD"))
-            $("#api_meter_bill_select").append(new Option(meter, meter));
-        });
+    .then((data) => callback(data, elem));
+}
+
+function populateSelect(options_json, elem) {
+  if (!options_json) {
+    console.log(options_json);
+  } else {
+    options_json.forEach((option) => {
+      if (typeof option === "string" && !option.includes("OLD")) {
+        $(elem).append(new Option(option, option));
+      } else if (typeof option !== "string") {
+        $(elem).append(new Option(option.name, option.id));
       }
     });
+  }
+}
+
+(async function () {
+  let api_url = `${API}/nea/v1/list`;
+  await getData(api_url + "/meters", populateSelect, "#api_meter_bill_select");
+  await getData(api_url + "/locations", populateSelect, "#nea_locations");
 })();
 
-async function fetchBills(api_url, status, result, billOf = null, input = null){
+async function fetchBills(
+  api_url,
+  method,
+  data = null,
+  status,
+  result,
+  billOf = null,
+  input = null
+) {
   fetch(api_url, {
+    method: method,
     headers: {
       Accept: "application/json",
+      "Content-Type": "application/json",
     },
+    body: JSON.stringify(data),
   })
     .then((response) => {
       let json = response.json();
@@ -426,19 +446,19 @@ async function fetchBills(api_url, status, result, billOf = null, input = null){
         toast("Something went wrong!");
         return false;
       } else {
-        if(input !== null) input.val("");
+        if (input !== null) input.val("");
         status.style.background = "#56c080";
         let bills = {};
-        if(Array.isArray(data)){
+        if (Array.isArray(data)) {
           data.forEach((bill) => {
-            bills[bill.name] = bill.state
+            bills[bill.name] = bill.state;
           });
         } else {
-          bills[data.name] = data.state
+          bills[data.name] = data.state;
         }
         result.html(JSON.stringify(bills, null, 2));
-        if(billOf !== null){
-          toast(`${meter} fetched from the API!`);
+        if (billOf !== null) {
+          toast(`${billOf} fetched from the API!`);
         } else {
           toast(`NEA Bills fetched from the API!`);
         }
@@ -459,7 +479,7 @@ refreshResultBtns.on("click", async (event) => {
       api_url = `${API}/nea/v1/`;
 
       result.html("fetching bills...");
-      await fetchBills(api_url, status, result);
+      await fetchBills(api_url, "GET", null, status, result);
       break;
 
     case "meter_bill":
@@ -471,7 +491,29 @@ refreshResultBtns.on("click", async (event) => {
       api_url = `${API}/nea/v1/meter/${meter}`;
 
       result.html("fetching bills...");
-      await fetchBills(api_url, status, result, meter);
+      await fetchBills(api_url, "GET", null, status, result, meter);
+      break;
+
+    case "bill_enquiry":
+      //fetch meter bill from the api
+      let location = $("#nea_locations").val();
+      result = $("#bill_enquiry_result");
+      status = document.querySelector("#bill_enquiry_status");
+
+      api_url = `${API}/nea/v1/bill`;
+
+      result.html("fetching bills...");
+      await fetchBills(
+        api_url,
+        "POST",
+        {
+          consumer_id: $("#consumer_id_input").val(),
+          nea_location_id: location,
+          sc_no: $("#sc_number_input").val(),
+        },
+        status,
+        result
+      );
       break;
 
     default:
