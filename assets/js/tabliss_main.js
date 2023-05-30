@@ -1788,6 +1788,25 @@
             "Sat",
           ]),
           (e.exports.en.short = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]),
+          (e.exports.np = [
+            "आइतवार",
+            "साेमवार",
+            "मंगलवार",
+            "बुधवार",
+            "बिहीवार",
+            "शुक्रवार",
+            "शनिवार",
+          ]),
+          (e.exports.np.abbr = [
+            "आइत",
+            "साेम",
+            "मंगल",
+            "बुध",
+            "बिही",
+            "शुक्र",
+            "शनि",
+          ]),
+          (e.exports.np.short = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"]),
           (e.exports.fr = [
             "dimanche",
             "lundi",
@@ -25011,17 +25030,15 @@
           e.createElement(
             "div",
             { className: "TodoList" },
-            t
-              .slice(-i)
-              .map((t) =>
-                e.createElement(Ys, {
-                  key: t.id,
-                  item: t,
-                  onToggle: () => n(t.id),
-                  onUpdate: (e) => r(t.id, e),
-                  onDelete: () => a(t.id),
-                })
-              )
+            t.slice(-i).map((t) =>
+              e.createElement(Ys, {
+                key: t.id,
+                item: t,
+                onToggle: () => n(t.id),
+                onUpdate: (e) => r(t.id, e),
+                onDelete: () => a(t.id),
+              })
+            )
           ),
         Js = { items: [], show: 3, keyBind: "T" };
       function Ks(e, t = 4) {
@@ -26473,7 +26490,7 @@
                 e.createElement(
                   "option",
                   { value: "ne", title: "Nepali" },
-                  "Nepali"
+                  "नेपाली"
                 ),
                 e.createElement(
                   "option",
